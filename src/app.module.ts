@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo/dist/drivers';
 import { AppResolver } from './app.resolver';
+import { UserModule } from './user/user.module';
+import { User } from './user/entity/user.entity';
 
 @Module({
   imports: [
@@ -27,7 +29,7 @@ import { AppResolver } from './app.resolver';
           password: configService.get('DB_PASSWORD'),
           database: configService.get('DB_DATABASE'),
           migrations: [__dirname + '/src/migrations/*.ts'],
-          entities: [],
+          entities: [User],
           autoLoadEntities: true,
           synchronize: true,
           logging: true,
@@ -35,6 +37,7 @@ import { AppResolver } from './app.resolver';
         };
       },
     }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver],
