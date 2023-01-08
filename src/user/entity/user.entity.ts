@@ -7,7 +7,7 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
 } from 'typeorm';
-import { UserRole } from './user.reol';
+import { UserRole } from './user.role';
 
 @ObjectType()
 @Entity('user')

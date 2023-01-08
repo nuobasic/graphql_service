@@ -2,6 +2,41 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type User {
+  userId: Int!
+  email: String!
+  password: String!
+  role: UserRole!
+  createAt: DateTime!
+  updateAt: DateTime!
+  deleteAt: DateTime!
+}
+
+enum UserRole {
+  """user"""
+  USER
+
+  """seller"""
+  SELLER
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
   satHello: String!
+  allUser: [User!]!
+}
+
+type Mutation {
+  creatrUser(createUserInput: CreateUserInput!): User!
+  deletUset(userId: Int!): User!
+}
+
+input CreateUserInput {
+  email: String!
+  password: String!
+  role: UserRole!
 }
