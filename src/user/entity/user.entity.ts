@@ -1,9 +1,11 @@
 import { Int, Field, ObjectType } from '@nestjs/graphql';
+import { Company } from '../../company/entity/company.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  OneToMany,
   UpdateDateColumn,
   DeleteDateColumn,
 } from 'typeorm';
@@ -39,4 +41,8 @@ export class User {
   @Field(() => Date)
   @DeleteDateColumn()
   deleteAt: Date;
+
+  @Field(() => [Company])
+  @OneToMany(() => Company, (company) => company.user)
+  company: Company[];
 }
