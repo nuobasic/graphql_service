@@ -8,6 +8,8 @@ import { ApolloDriver } from '@nestjs/apollo/dist/drivers';
 import { AppResolver } from './app.resolver';
 import { UserModule } from './user/user.module';
 import { User } from './user/entity/user.entity';
+import { CompanyModule } from './company/company.module';
+import { Company } from './company/entity/company.entity';
 
 @Module({
   imports: [
@@ -29,7 +31,7 @@ import { User } from './user/entity/user.entity';
           password: configService.get('DB_PASSWORD'),
           database: configService.get('DB_DATABASE'),
           migrations: [__dirname + '/src/migrations/*.ts'],
-          entities: [User],
+          entities: [User, Company],
           autoLoadEntities: true,
           synchronize: true,
           logging: true,
@@ -38,6 +40,7 @@ import { User } from './user/entity/user.entity';
       },
     }),
     UserModule,
+    CompanyModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver],
