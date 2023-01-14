@@ -1,7 +1,8 @@
-import { Field, InputType } from '@nestjs/graphql';
+import { Field, InputType, ObjectType } from '@nestjs/graphql';
 import { UserRole } from '../entity/user.role';
 
-@InputType()
+@ObjectType({ isAbstract: true })
+@InputType({ isAbstract: true })
 export class CreateUserInput {
   @Field()
   email: string;

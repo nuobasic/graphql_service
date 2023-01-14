@@ -1,4 +1,4 @@
-import { Int, Field, ObjectType } from '@nestjs/graphql';
+import { Int, Field, ObjectType, Directive } from '@nestjs/graphql';
 import { Company } from '../../company/entity/company.entity';
 import {
   Column,
@@ -11,7 +11,7 @@ import {
 } from 'typeorm';
 import { UserRole } from './user.role';
 
-@ObjectType()
+@ObjectType({ isAbstract: true })
 @Entity('user')
 export class User {
   @Field(() => Int)
